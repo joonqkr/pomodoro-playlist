@@ -7,14 +7,9 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import {useState} from "react";
 
 function App() {
-  const [token, setToken] = useState("");
-  let tempToken = window.localStorage.getItem("token");
-  if (tempToken) {
-    setToken(tempToken);
-  }
+  let token = window.localStorage.getItem("token");
 
   return (
     <Router>
