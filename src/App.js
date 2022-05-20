@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 
 function App() {
-  let token = window.localStorage.getItem("token");
+  const token = window.localStorage.getItem("token");
 
   return (
     <Router>

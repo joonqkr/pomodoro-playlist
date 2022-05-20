@@ -8,13 +8,13 @@ export default function Login() {
 
     const login = () => {
         const hash = window.location.hash;
-        let tempToken = window.localStorage.getItem("token");
+        let token = window.localStorage.getItem("token");
 
-        if (!tempToken && hash) {
-            tempToken = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1];
+        if (!token && hash) {
+            token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1];
 
             window.location.hash = "";
-            window.localStorage.setItem("token", tempToken);
+            window.localStorage.setItem("token", token);
             window.location.reload();
         }
     };
