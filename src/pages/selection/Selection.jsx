@@ -1,11 +1,43 @@
 import Logout from "../../components/logout/Logout";
+import Playlist from "../../components/playlist/Playlist";
+import { useState, useEffect } from "react";
 import "./selection.css"
+import axios from "axios";
 
 export default function Selection() {
+    /* User token. */
+    const token = window.localStorage.getItem("token");
+
+    const [playlists, setPlaylists] = useState([])
+
+    /* Get user's playlists. */
+    useEffect(() => {
+        const getPlaylists = async () => {
+            const {data} = await axios.get("https://api.spotify.com/v1/me/playlists", {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                params: {
+                    'limit': '50',
+                    'offset': '0'
+                }
+            });
+    
+            setPlaylists(data.items);
+        };
+
+        getPlaylists();
+    }, [token]);
+    
     return (
-        <div className="login">
+        <div className="selection">
             <Logout/>
-            <p>Hello World!</p>
+            {playlists.map(playlist => (
+                <div key={playlist.id}>
+                    {playlist.images ? <img src={playlist.images[0].url} alt=""/> : <div>No Image</div>}
+                    {playlist.name}
+                </div>
+            ))}
         </div>
     );
 }
