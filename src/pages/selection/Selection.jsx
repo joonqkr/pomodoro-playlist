@@ -32,11 +32,8 @@ export default function Selection() {
     return (
         <div className="selection">
             <Logout/>
-            {playlists.map(playlist => (
-                <div key={playlist.id}>
-                    {playlist.images ? <img src={playlist.images[0].url} alt=""/> : <div>No Image</div>}
-                    {playlist.name}
-                </div>
+            {playlists.map(p => (
+                <Playlist key={p.id} playlist={p} />
             ))}
         </div>
     );
