@@ -1,6 +1,4 @@
 import "./login.css";
-import { useState, useEffect } from "react";
-import axios from "axios";
 
 export default function Login() {
     const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
