@@ -19,15 +19,16 @@ function App() {
 
   const updatePlaylist = (newPlaylist) => {
     setPlaylist(newPlaylist);
+    console.log(playlist);
   }
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={token ? <Selection /> : <Login />} />
+        <Route path="/" element={token ? <Navigate to="/selection" /> : <Login />} />
         <Route path="/login" element={token ? <Navigate to="/" /> : <Login />} />
         <Route path="/selection" element={token ? <Selection onPlaylistSelect={updatePlaylist} /> : <Login />} />
-        <Route path="/final" element={token ? (playlist ? <Final playlist={playlist} /> : <Selection />) : <Login />} />
+        <Route path="/final" element={token ? (playlist ? <Final playlist={playlist} /> : <Navigate to="/selection" />) : <Login />} />
       </Routes>
     </Router>
   );

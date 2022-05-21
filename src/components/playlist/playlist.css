@@ -1,0 +1,16 @@
+.playlist {
+    width: 100%;
+    border-radius: 5px;
+    margin: 15px 0;
+    background-color: #E6DEF5;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+.playlist * {
+    font-family: inherit;
+}
+
+.playlistWrapper {
+    margin: 10px;
+    padding: 10px 15px;    
+}
