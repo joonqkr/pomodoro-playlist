@@ -1,4 +1,6 @@
 import "./login.css";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function Login() {
     const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
@@ -6,7 +8,7 @@ export default function Login() {
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
     const RESPONSE_TYPE = "token";
 
-    const login = () => {
+   useEffect(() => {
         const hash = window.location.hash;
         let token = window.localStorage.getItem("token");
 
@@ -15,13 +17,12 @@ export default function Login() {
 
             window.location.hash = "";
             window.localStorage.setItem("token", token);
-            window.location.reload();
         }
-    };
+    }, []);
 
     return (
         <div className="login">
-            <a onClick={login} href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login to Spotify</a>
+            <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login to Spotify</a>
         </div>
     );
 }

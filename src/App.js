@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Login from "./pages/login/Login";
 import Selection from "./pages/selection/Selection";
 import Final from "./pages/final/Final";
@@ -9,16 +10,24 @@ import {
 } from "react-router-dom";
 
 function App() {
-  const token = window.localStorage.getItem("token");
+  const [playlist, setPlaylist] = useState(null);
+  const [token, setToken] = useState("");
+
+  useEffect(() => {
+    setToken(window.localStorage.getItem("token"));
+  }, []);
+
+  const updatePlaylist = (newPlaylist) => {
+    setPlaylist(newPlaylist);
+  }
 
   return (
     <Router>
       <Routes>
-        {console.log("hello")}
         <Route path="/" element={token ? <Selection /> : <Login />} />
         <Route path="/login" element={token ? <Navigate to="/" /> : <Login />} />
-        <Route path="/selection" element={token ? <Selection /> : <Login />} />
-        <Route path="/final" element={token ? <Final /> : <Login />} />
+        <Route path="/selection" element={token ? <Selection onPlaylistSelect={updatePlaylist} /> : <Login />} />
+        <Route path="/final" element={token ? (playlist ? <Final playlist={playlist} /> : <Selection />) : <Login />} />
       </Routes>
     </Router>
   );
