@@ -11,8 +11,6 @@ export default function Selection(props) {
 
     const [playlists, setPlaylists] = useState([])
 
-    const [chosenPlaylist, setChosenPlaylist] = useState(null);
-
     /* Get user's playlists. */
     useEffect(() => {
         const getPlaylists = async () => {

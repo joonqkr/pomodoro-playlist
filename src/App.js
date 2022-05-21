@@ -19,7 +19,6 @@ function App() {
 
   const updatePlaylist = (newPlaylist) => {
     setPlaylist(newPlaylist);
-    console.log(playlist);
   }
 
   return (
