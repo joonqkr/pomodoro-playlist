@@ -11,6 +11,8 @@ export default function Selection(props) {
 
     const [playlists, setPlaylists] = useState([])
 
+    /* TODO: allow to see all playlists, not just 50, when there are more */
+
     /* Get user's playlists. */
     useEffect(() => {
         const getPlaylists = async () => {
