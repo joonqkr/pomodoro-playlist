@@ -10,6 +10,13 @@ export default function Final({ playlist }) {
 
     const [pomodoro, setPomodoro] = useState(null);
 
+    /* Given a list of songs (and their duration), a desired total duration, 
+     * and allowed margin, generate a list of songs and their track IDs that are 
+     * around the given duration time. */
+    const generateSongList = (songs, duration, margin) => {
+        
+    };
+
     /* Get user's playlists. */
     useEffect(() => {
         /* Create pomodoro playlist. */
@@ -20,11 +27,16 @@ export default function Final({ playlist }) {
                     'Authorization': `Bearer ${token}`,
                 },
                 params: {
-                    fields: 'items(track(id, uri))'
+                    fields: 'items(track(id))'
                 }
             })
             .then((response) => {
-                console.log(response.data);
+                const songs = [];
+                for (const item of response.data.items) {
+                    songs.push(item.track.id);
+                }
+
+                const songList = generateSongList(songs, 25, 2);
             }, (error) => {
                 console.log(error);
             });
