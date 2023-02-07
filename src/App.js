@@ -12,6 +12,15 @@ import {
 function App() {
   const [playlist, setPlaylist] = useState(null);
   const [token, setToken] = useState("");
+  const [description, setDescription] = useState(
+    {
+      title: "pomodoro playlist",
+      description: "",
+      public: true,
+      collaborative: false,
+      allowRepeats: true
+    }
+  );
 
   useEffect(() => {
     setToken(window.localStorage.getItem("token"));
@@ -19,6 +28,10 @@ function App() {
 
   const updatePlaylist = (newPlaylist) => {
     setPlaylist(newPlaylist);
+  }
+
+  const updateDescription = (newDescription) => {
+    setDescription(newDescription);
   }
 
   return (
