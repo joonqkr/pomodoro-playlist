@@ -1,5 +1,6 @@
 import "./description.css";
 import { useState } from "react";
+import Logout from "../../components/logout/Logout";
 
 export default function Description(props) {
 
@@ -10,13 +11,15 @@ export default function Description(props) {
             description: event.target.description.value,
             public: event.target.public.value === "public" ? true : false,
             collaborative: event.target.collaborative.value === "yes" ? true : false,
-            allowRepeats: event.target.repeat.value === "yes" ? true : false
+            allowRepeats: event.target.repeat.value === "yes" ? true : false,
+            break: event.target.break.value === "5" ?  5 : 15,
         };
         props.onSubmission(submission);
     }
 
     return (
         <div className="description">
+            <Logout/>
             <form onSubmit={handleSubmit}>
                 <label>
                     Playlist Title:
@@ -79,6 +82,22 @@ export default function Description(props) {
                         id="no"
                         value="no"/>
                     <label for="no">No</label><br/>
+                </label>
+                <label>
+                    Short or long break?
+                    <br/>
+                    <input 
+                        name="break"
+                        type="radio"
+                        id="short"
+                        value="5"/>
+                    <label for="short">5 min</label><br/>
+                    <input 
+                        name="break"
+                        type="radio"
+                        id="long"
+                        value="15"/>
+                    <label for="long">15 min</label><br/>
                 </label>
                 <input type="submit" value="Submit"/>
             </form>
