@@ -30,10 +30,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={token ? <Navigate to="/description" /> : <Login />} />
+        <Route path="/" element={token ? <Navigate to="/selection" /> : <Login />} />
         <Route path="/login" element={token ? <Navigate to="/" /> : <Login />} />
-        <Route path="/description" element={token ? (description ? <Navigate to="/selection" /> : <Description onSubmission={updateDescription}/>) : <Login />}/>
-        <Route path="/selection" element={token ? (description ? <Selection onPlaylistSelect={updatePlaylist} /> : <Navigate to="/description" />) : <Login />} />
+        <Route path="/selection" element={token ? <Selection onPlaylistSelect={updatePlaylist} /> : <Login />} />
         <Route path="/final" element={token ? (playlist ? <Final playlist={playlist} /> : <Navigate to="/selection" />) : <Login />} />
       </Routes>
     </Router>
